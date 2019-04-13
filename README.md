@@ -22,6 +22,10 @@
   <ul>
      <li>Solder the components to perfboard (Not started Yet)</li>
    </ul>
+  <li>Android App</li>
+  <ul>
+     <li>Deploying Android App (Not started Yet)</li>
+   </ul>
    <li>Design</li>
   <ul>
      <li>Box full with secrets (Not started Yet)</li>
