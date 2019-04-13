@@ -5,7 +5,10 @@
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 Adafruit_BME280 bme;
-
+float temp =0; 
+float pressure = 0;
+float alt = 0;
+float humi = 0;
 void setup() {
   Serial.begin(9600);
 
@@ -16,12 +19,18 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("Temperature = ");
-  Serial.print(bme.readTemperature());
+
+temp = bme.readTemperature();
+pressure = bme.readPressure() / 100.0F;
+alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
+humi = bme.readHumidity();
+
+Serial.print("Temperature = ");
+  Serial.print(temp);
   Serial.println("*C");
 
   Serial.print("Pressure = ");
-  Serial.print(bme.readPressure() / 100.0F);
+  Serial.print(pressure);
   Serial.println("hPa");
 
   Serial.print("Approx. Altitude = ");
