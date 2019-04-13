@@ -17,7 +17,7 @@ float v2 = 0;
 
 //change this with the pin that you use
 int pin = A3;
-int lpg, co, smoke;
+float lpg = 0, co = 0, smoke = 0;
 MQ2 mq2(pin);
 
 int measurePin = A6;
@@ -36,6 +36,7 @@ void setup() {
   s.begin(115200);
   Serial.begin(9600);
   pinMode(ledPower, OUTPUT);
+  mq2.begin();
 }
 
 StaticJsonBuffer<500> jsonBuffer;
@@ -54,7 +55,7 @@ void loop() {
   delayMicroseconds(sleepTime);
 
   calcVoltage = voMeasured * (3.3 / 1024);
-  dustDensity = 0.17 * calcVoltage - 0.1;
+  dustDensity = 0.17 * calcVoltage + 0.10;
   //Serial.println("dust");
   //Serial.println("bme");
 
@@ -86,12 +87,12 @@ voltage = ((float)sum / (float)NUM_SAMPLES * 5.015) / 1024.0;
   root["smoke"] = smoke;
   root["voltage"] = v2;
 
-  //root.printTo(Serial);
+  root.printTo(Serial);
   root.printTo(s);
-  //Serial.println("");
+  Serial.println("");
 
   sample_count = 0;
   sum = 0;
   //Serial.println("Send");
-  delay(1000);
+  jsonBuffer.clear();
 }

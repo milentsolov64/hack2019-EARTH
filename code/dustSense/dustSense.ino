@@ -31,7 +31,7 @@ digitalWrite(ledPower, LOW); // power on the LED
 
   // linear eqaution taken from http://www.howmuchsnow.com/arduino/airquality/
   // Chris Nafis (c) 2012
-  dustDensity = 0.17 * calcVoltage - 0.1;
+  dustDensity = 0.17 * calcVoltage + 0.11;
   Serial.print("Raw Signal Value (0-1023): ");  Serial.print(voMeasured);  Serial.print(" - Voltage: "); Serial.print(calcVoltage);  Serial.print(" - Dust Density: "); Serial.println(dustDensity);
 delay(1000);
 
