@@ -35,7 +35,7 @@ void setup() {
   Serial.begin(115200);
   s.begin(115200);
   WiFi.begin(ssid, password); //begin WiFi connection
-  Serial.println("");
+  //Serial.println("");
   if (!bme.begin(0x76)) {
     Serial.println("Could not find a valid BME280 sensor, check wiring!");
     while (1);
@@ -44,15 +44,15 @@ void setup() {
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
+    //Serial.print(".");
   }
-  Serial.println("");
-  Serial.print("Connected to ");
-  Serial.println(ssid);
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+  //  Serial.println("");
+  //  Serial.print("Connected to ");
+  //  Serial.println(ssid);
+  //  Serial.print("IP address: ");
+  //  Serial.println(WiFi.localIP());
   server.begin();
-  Serial.println("Web server started!");
+  //  Serial.println("Web server started!");
 }
 
 void loop() {
