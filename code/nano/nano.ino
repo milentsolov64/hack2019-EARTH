@@ -93,5 +93,5 @@ voltage = ((float)sum / (float)NUM_SAMPLES * 5.015) / 1024.0;
   sample_count = 0;
   sum = 0;
   //Serial.println("Send");
-  delay(2000);
+  delay(1000);
 }
