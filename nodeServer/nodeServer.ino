@@ -4,6 +4,7 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
+#include <SoftwareSerial.h>
 
 #define SEALEVELPRESSURE_HPA (1013.25)
 
@@ -12,15 +13,18 @@ const char* password = "thisIsYourMoment!";
 
 ESP8266WebServer server(80);
 String page = "";
-String page2 = "";
+String refresh = "";
+String data = "";
 Adafruit_BME280 bme;
 float temp = 0;
 float pressure = 0;
 float alt = 0;
 float humi = 0;
+SoftwareSerial s(D6, D5);
 
 void setup() {
   Serial.begin(9600);
+  s.begin(115200);
   WiFi.begin(ssid, password); //begin WiFi connection
   Serial.println("");
   if (!bme.begin(0x76)) {
@@ -72,9 +76,20 @@ void loop() {
 
   //Serial.println();
   delay(1000);
+  s.write("s");
+  if (s.available() > 0)
+  {
+    data = s.readString();
+    //Serial.println(data);
+  }
+
   server.on("/", []() {
-    page = "Temperature: " + String(temp) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pressure: " + String(pressure) + "<br>Aprox. Altitude: " + String(alt) + "&nbsp; &nbsp;Humidity: " + String(humi) + "";
+    page = "Temperature: " + String(temp) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pressure: " + String(pressure) + "<br>Aprox. Altitude: " + String(alt) + "&nbsp; &nbsp;Humidity: " + String(humi) + "<br>" + String(data);
     server.send(200, "text/html", page);
   });
   server.handleClient();
+
+
+
+
 }
