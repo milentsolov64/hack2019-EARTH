@@ -38,7 +38,7 @@ void setup() {
   pinMode(ledPower, OUTPUT);
 }
 
-StaticJsonBuffer<1000> jsonBuffer;
+StaticJsonBuffer<500> jsonBuffer;
 JsonObject& root = jsonBuffer.createObject();
 
 void loop() {
@@ -71,15 +71,27 @@ void loop() {
 
   //Serial.println("check");
 
+  while (sample_count < NUM_SAMPLES) {
+    sum += analogRead(A2);
+    sample_count++;
+    delay(10);
+  }
+voltage = ((float)sum / (float)NUM_SAMPLES * 5.015) / 1024.0;
+
+
+  v2 = voltage * 4.22;
   root["dust"] = dustDensity;
-  root["lpg"] = lpg;
-  root["co"] = co;
-  root["smoke"] = smoke;
+  root["lpg:"] = lpg;
+  root["co:"] = co;
+  root["smoke:"] = smoke;
+  root["voltage"] = v2;
 
   root.printTo(Serial);
   root.printTo(s);
   Serial.println("");
 
+  sample_count = 0;
+  sum = 0;
   //Serial.println("Send");
   delay(2000);
 }
