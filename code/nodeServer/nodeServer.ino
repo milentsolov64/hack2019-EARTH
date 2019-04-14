@@ -56,7 +56,7 @@ void setup() {
   server.on("/", []() {
     digitalWrite(D4, LOW);
     //page = "Temperature: " + String(temp) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pressure: " + String(pressure) + "<br>Aprox. Altitude: " + String(alt) + "&nbsp; Humidity: " + String(humi) + "<br>Dust Density: " + String(val1) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;LPG: " + String(val2) + "<br>" + "CO: " + String(val3) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Smoke: " + String(val4) + "<br>Voltage: " + String(val5) + "" ;
-    page = "{\"temperature\": " + String(temp) + ",\"pressure\": " + String(pressure) + ",\"altitude\": " + String(alt) + ",\"humidity\": " + String(humi) + ",\"dustDensity\": " + String(val1) + ",\"lpg\": " + String(val2) + ",\"co\": " + String(val3) + ",\"smoke\": " + String(val4) + ",\"voltage\": " + String(val5) + "}";
+    page = "{\n  \"temperature\": " + String(temp) + ",\n  \"pressure\": " + String(pressure) + ",\n  \"altitude\": " + String(alt) + ",\n  \"humidity\": " + String(humi) + ",\n  \"dustDensity\": " + String(val1) + ",\n  \"lpg\": " + String(val2) + ",\n  \"co\": " + String(val3) + ",\n  \"smoke\": " + String(val4) + ",\n  \"voltage\": " + String(val5) + "\n}";
     server.send(200, "application/json", page);
     digitalWrite(D4, HIGH);
   });
