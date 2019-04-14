@@ -16,18 +16,18 @@
    </ul>
    <li>Receiver</li>
   <ul>
-     <li>NodeMCU8266 (In Progress)</li>
+     <li>NodeMCU8266 (done)</li>
    </ul>
    <li>Soldering</li>
   <ul>
-     <li>Solder the components to perfboard (Not started Yet)</li>
+     <li>Solder the components to perfboard (done)</li>
    </ul>
   <li>Android App</li>
   <ul>
-     <li>Deploying Android App (Not started Yet)</li>
+     <li>Deploying Android App (In Progress)</li>
    </ul>
    <li>Design</li>
   <ul>
-     <li>Box full with secrets (Not started Yet)</li>
+     <li>Box full with secrets (done)</li>
    </ul>
 </ol>
