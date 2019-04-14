@@ -32,10 +32,8 @@ Adafruit_BME280 bme;
 StaticJsonBuffer<500> jsonBuffer;
 
 void setup() {
-  pinMode(D3, OUTPUT);
-  digitalWrite(D3, LOW);
   pinMode(D4, OUTPUT);
-  digitalWrite(D4, LOW);
+  digitalWrite(D4, HIGH);
   //setting up communication interfaces
   Serial.begin(115200);
   s.begin(115200);
@@ -46,22 +44,21 @@ void setup() {
     while (1);
   }
 
-    Serial.println("");
-    Serial.print("Connected to ");
-    Serial.println(ssid);
-    Serial.print("IP address: ");
-    Serial.println(WiFi.localIP());
+  Serial.println("");
+  Serial.print("Connected to ");
+  Serial.println(ssid);
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
   server.begin();
-  digitalWrite(D3, HIGH);
   //  Serial.println("Web server started!");
 
   //-----WEB PAGE START-----
   server.on("/", []() {
-    digitalWrite(D4, HIGH);
+    digitalWrite(D4, LOW);
     //page = "Temperature: " + String(temp) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pressure: " + String(pressure) + "<br>Aprox. Altitude: " + String(alt) + "&nbsp; Humidity: " + String(humi) + "<br>Dust Density: " + String(val1) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;LPG: " + String(val2) + "<br>" + "CO: " + String(val3) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Smoke: " + String(val4) + "<br>Voltage: " + String(val5) + "" ;
     page = "{\"temperature\": " + String(temp) + ",\"pressure\": " + String(pressure) + ",\"altitude\": " + String(alt) + ",\"humidity\": " + String(humi) + ",\"dustDensity\": " + String(val1) + ",\"lpg\": " + String(val2) + ",\"co\": " + String(val3) + ",\"smoke\": " + String(val4) + ",\"voltage\": " + String(val5) + "}";
     server.send(200, "application/json", page);
-    digitalWrite(D4, LOW);
+    digitalWrite(D4, HIGH);
   });
 
 
@@ -70,29 +67,29 @@ void setup() {
 }
 
 void loop() {
-JsonObject& root = jsonBuffer.parseObject(s);
+  JsonObject& root = jsonBuffer.parseObject(s);
   if (root.success())
   {
     root.printTo(Serial);
     Serial.println("");
     //---extract values-----
-  val1 = root["dust"];
-  val2 = root["lpg"];
-  val3 = root["co"];
-  val4 = root["smoke"];
-  val5 = root["voltage"];
+    val1 = root["dust"];
+    val2 = root["lpg"];
+    val3 = root["co"];
+    val4 = root["smoke"];
+    val5 = root["voltage"];
 
-  //--extract values END---
+    //--extract values END---
   }
   jsonBuffer.clear();
 
 
   //---extract values-----
-//  val1 = root["dust"];
-//  val2 = root["lpg"];
-//  val3 = root["co"];
-//  val4 = root["smoke"];
-//  val5 = root["voltage"];
+  //  val1 = root["dust"];
+  //  val2 = root["lpg"];
+  //  val3 = root["co"];
+  //  val4 = root["smoke"];
+  //  val5 = root["voltage"];
 
   //--extract values END---
 
@@ -102,5 +99,5 @@ JsonObject& root = jsonBuffer.parseObject(s);
   alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
   humi = bme.readHumidity();
   //-----bme280_END------
-    server.handleClient();
+  server.handleClient();
 }
