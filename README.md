@@ -1,4 +1,4 @@
-<b>Hack Vratsa 2019</b>
+﻿<b>Hack Vratsa 2019</b>
 </br>
 <b>#кодаправиш</b>
 <ol>
@@ -24,7 +24,7 @@
    </ul>
   <li>Android App</li>
   <ul>
-     <li>Deploying Android App (In Progress)</li>
+     <li>Deploying Android App (done)</li>
    </ul>
    <li>Design</li>
   <ul>
