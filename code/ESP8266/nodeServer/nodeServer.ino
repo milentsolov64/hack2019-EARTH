@@ -11,8 +11,8 @@
 //calibrate SEA_LEVEL
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-const char* ssid = "Vratsa_Software";
-const char* password = "thisIsYourMoment!";
+const char* ssid = "wifi_ssif";
+const char* password = "wifi_pswd";
 
 String page = "";
 float temp = 0;
@@ -26,7 +26,7 @@ float val4 = 0;
 float val5 = 0;
 
 //start services
-ESP8266WebServer server(80);
+ESP8266WebServer server(1517);
 SoftwareSerial s(D6, D5);
 Adafruit_BME280 bme;
 StaticJsonBuffer<500> jsonBuffer;
