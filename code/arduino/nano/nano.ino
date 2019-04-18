@@ -77,10 +77,10 @@ void loop() {
     sample_count++;
     delay(10);
   }
-voltage = ((float)sum / (float)NUM_SAMPLES * 5.015) / 1024.0;
+  voltage = ((float)sum / (float)NUM_SAMPLES * 5.015) / 1024.0;
 
 
-  v2 = voltage * 4.22;
+  v2 = voltage * 4;
   root["dust"] = dustDensity;
   root["lpg"] = lpg;
   root["co"] = co;
