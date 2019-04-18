@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(test.getVoltage() != "")
                 {
-                    battery.setText( String.format("%.2f", ((Double.parseDouble(test.getVoltage())-3.2)*100)) + "%");
+                    battery.setText( String.format("%.2f", ((Double.parseDouble(test.getVoltage())-3.4)*100)) + "%");
                     if(Double.parseDouble(test.getVoltage()) - 1 >= 10){
                         ImageView dustImg = findViewById(R.id.gasSmokeImg);
                         dustImg.setBackgroundColor(Color.parseColor("#e83410"));
