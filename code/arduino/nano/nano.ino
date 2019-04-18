@@ -80,7 +80,7 @@ void loop() {
 voltage = ((float)sum / (float)NUM_SAMPLES * 5.015) / 1024.0;
 
 
-  v2 = voltage * 3;
+  v2 = voltage * 4.22;
   root["dust"] = dustDensity;
   root["lpg"] = lpg;
   root["co"] = co;
