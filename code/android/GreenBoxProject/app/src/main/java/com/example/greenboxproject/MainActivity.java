@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
 
                     while(true){
-                        URL oracle = new URL("http://192.168.4.1/"); // URL to Parse
+                        URL oracle = new URL("http://77.76.185.128:4343/"); // URL to Parse
                         URLConnection yc = oracle.openConnection();
                         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
                         String inputLine;
